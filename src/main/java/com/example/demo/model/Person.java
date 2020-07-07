@@ -7,18 +7,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Person {
 
 	@Id
-	String id;
-	String firstName;
-	String lastName;
-	int age;
+private	String id;
+private	String firstName;
+private	String lastName;
+private	int age;
+
 	
-	public Person(String firstName,String lastName,int age) {
-		
-		this.firstName =firstName;
-		this.lastName = lastName;
-		this.age=age;
-		
-	}
+	public Person(String firstName,String lastName,int age)	{
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.age = age;
+	
+}
+	
 
 	public String getId() {
 		return id;

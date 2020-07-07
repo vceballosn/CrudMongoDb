@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,40 +18,39 @@ public class PersonController {
 	@Autowired
 	private  PersonService personService;
 	
-	@RequestMapping("/create")
-	
-	public String create (@RequestParam String nombre,@RequestParam String apellido,@RequestParam int edad) {
-	     Person p = personService.guardar(nombre, apellido, edad);
+	@RequestMapping(value="/create")
+	public String create (@RequestParam String firstName,@RequestParam String lastName,@RequestParam int age) {
+	     Person p = personService.save(firstName, lastName, age);
 		return p.toString();
 	}
 	
-	@RequestMapping("/get")
-	public Person getPerson(@RequestParam String nombre) {
-		return personService.getFirstName(nombre);
+	@RequestMapping(value = "/get")
+	public Person getFirstName(@RequestParam String firstName) {
+		return personService.getFirstName(firstName);
 	}
 	
-	@RequestMapping("/getAll")
+	@RequestMapping( value ="/getAll")
    public List<Person> getAll(){
-		return personService.obtenerTodos();
+		return personService.getAll();
 	}
 	
-	@RequestMapping("/update")
+	@RequestMapping(value ="/update")
 	
-	public String update(@RequestParam String nombre,@RequestParam String apellido,@RequestParam int edad) {
-		Person p  = personService.modificar(nombre, apellido, edad);
+	public String update(@RequestParam String firstName,@RequestParam String lastName,@RequestParam int age) {
+		Person p  = personService.update(firstName, lastName, age);
 		return p.toString();
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(@RequestParam String nombre) {
-		personService.delete(nombre);
-		return "Borrado "  + nombre;
+	@RequestMapping(value ="/delete")
+	public String delete(@RequestParam String firstName) {
+		personService.delete(firstName);
+		return "Delete "  + firstName;
 	}
 	
-	@RequestMapping("/deleteAll")
+	@RequestMapping(value="/deleteAll")
     public String deleteAll() {
-		personService.borrarTodos();
-		return "Borrado todos los Registros ";
+		personService.deleteAll();
+		return "Delete All ";
 	}
     
 }

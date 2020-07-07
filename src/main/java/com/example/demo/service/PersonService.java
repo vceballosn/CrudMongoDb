@@ -14,11 +14,11 @@ public class PersonService {
 	@Autowired
 	private PersonRepository personRepository;
 	
-	public Person guardar(String nombre, String apellido,int edad) {
+	public Person save(String nombre, String apellido,int edad) {
 		return personRepository.save(new Person(nombre,apellido,edad));	
 	}
 
-	public List<Person> obtenerTodos() {
+	public List<Person> getAll() {
 		return personRepository.findAll();
 	}
 	
@@ -26,14 +26,14 @@ public class PersonService {
 	  return personRepository.findByFirstName(nombre);
 	}
 	
-	public Person modificar(String nombre, String apellido, int edad) {
+	public Person update(String nombre, String apellido, int edad) {
 		Person p = personRepository.findByFirstName(nombre) ;
 		p.setLastName(apellido);
 		p.setAge(edad);
 		return personRepository.save(p);
 	}
 	
-	public void  borrarTodos() {
+	public void  deleteAll() {
 		personRepository.deleteAll();
 	}
 	
